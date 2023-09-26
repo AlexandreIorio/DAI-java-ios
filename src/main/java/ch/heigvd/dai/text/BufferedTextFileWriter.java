@@ -14,9 +14,9 @@ public class BufferedTextFileWriter implements Writable {
                         StandardCharsets.UTF_8
                 )
         );
-
+        byte b = "A".getBytes(StandardCharsets.UTF_8)[0];
         for (int i = 0; i < sizeInBytes; ++i) {
-            writer.write('A');
+            writer.write(b);
         }
 
         writer.flush();

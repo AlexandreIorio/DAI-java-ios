@@ -5,6 +5,7 @@ import ch.heigvd.dai.Writable;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 public class TextFileWriter implements Writable {
 
@@ -12,9 +13,9 @@ public class TextFileWriter implements Writable {
     public void write(String filename, int sizeInBytes) throws IOException {
 
         FileWriter writer = new FileWriter(filename);
-
+        byte b = "A".getBytes(StandardCharsets.UTF_8)[0];
         for (int i = 0; i < sizeInBytes; i++){
-            writer.write('A');
+            writer.write(b);
         }
         writer.flush();
         writer.close();
