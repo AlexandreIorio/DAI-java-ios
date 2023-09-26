@@ -45,8 +45,6 @@ In this example, the application will measure performance for file sizes from 2<
 
 ## Generate charts and dataTable
 
-Prerequisites for SVG Generation: `matplotlib` and `pandas`
-
 To generate SVG (Scalable Vector Graphics) files, you will need to install the `matplotlib` and `pandas` Python libraries. You can install them using the following `pip` commands:
 
 ```shell
@@ -77,13 +75,6 @@ With this project, we have generated the following data, ranging from 1 byte to 
 Here is the results:
 ![chart](chart.svg)
 ![table](data_table.svg)
-
-
-From this analysis, we can say that:
-
-1) When buffered it's faster
-2) Unbuffered, `TEXT` type processing in reading and writing is not really important.
-3) Processing speed of `BINARY` files is considerably faster when buffered.
 
 ## Conclusion
 
