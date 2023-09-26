@@ -17,7 +17,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         final int MAX_POWER = 20;
-        final int INTERVAL = 10;
+        final int INTERVAL = 2;
         final String CSV = "data.csv";
 
         StringBuilder csvContent = new StringBuilder("Name;Type;Buffered;Size;WTime;RTime\n");
@@ -33,8 +33,8 @@ public class Main {
         for (int i = 0; i <= MAX_POWER; i+= INTERVAL) {
             int byteSize = (int)Math.pow(2,i);
             String fileName = "binary_nBuffered_"+byteSize+".bin";
-            long wTime = Measure.write(fileName, byteSize, false, Measure.FileType.BINARY);
-            long rTime = Measure.read(fileName, false, Measure.FileType.BINARY);
+            long wTime = Measure.write(fileName, byteSize, false, Measure.FileType.BINARY) / 1000000;
+            long rTime = Measure.read(fileName, false, Measure.FileType.BINARY) / 1000000;
             csvContent.append(fileName +";"+Measure.FileType.BINARY+";"+false+";"+byteSize+";"+wTime + ";" + rTime + '\n');
 
         }
@@ -48,8 +48,8 @@ public class Main {
         for (int i = 0; i <= MAX_POWER; i+= INTERVAL) {
             int byteSize = (int)Math.pow(2,i);
             String fileName = "binary_Buffered_"+byteSize+".bin";
-            long wTime = Measure.write(fileName, byteSize, true, Measure.FileType.BINARY);
-            long rTime = Measure.read(fileName, true, Measure.FileType.BINARY);
+            long wTime = Measure.write(fileName, byteSize, true, Measure.FileType.BINARY) / 1000000;
+            long rTime = Measure.read(fileName, true, Measure.FileType.BINARY) / 1000000;
             csvContent.append(fileName +";"+Measure.FileType.BINARY+";"+true+";"+byteSize+";"+wTime + ";" + rTime + '\n');
         }
 
@@ -62,8 +62,8 @@ public class Main {
         for (int i = 0; i <= MAX_POWER; i+= INTERVAL) {
             int byteSize = (int)Math.pow(2,i);
             String fileName = "text_nBuffered_"+byteSize+".txt";
-            long wTime = Measure.write(fileName, byteSize, false, Measure.FileType.TEXT);
-            long rTime = Measure.read(fileName, false, Measure.FileType.TEXT);
+            long wTime = Measure.write(fileName, byteSize, false, Measure.FileType.TEXT) / 1000000;
+            long rTime = Measure.read(fileName, false, Measure.FileType.TEXT) / 1000000;
             csvContent.append(fileName +";"+Measure.FileType.TEXT+";"+false+";"+byteSize+";"+wTime + ";" + rTime + '\n');
         }
 
@@ -76,8 +76,8 @@ public class Main {
         for (int i = 0; i <= MAX_POWER; i+= INTERVAL) {
             int byteSize = (int)Math.pow(2,i);
             String fileName = "text_Buffered_"+byteSize+".txt";
-            long wTime = Measure.write(fileName, byteSize, true, Measure.FileType.TEXT);
-            long rTime = Measure.read(fileName, true, Measure.FileType.TEXT);
+            long wTime = Measure.write(fileName, byteSize, true, Measure.FileType.TEXT) / 1000000;
+            long rTime = Measure.read(fileName, true, Measure.FileType.TEXT) / 1000000;
             csvContent.append(fileName +";"+Measure.FileType.TEXT+";"+ true +";"+byteSize+";"+wTime + ";" + rTime + '\n');
         }
 

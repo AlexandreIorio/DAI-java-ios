@@ -4,29 +4,44 @@ import matplotlib.pyplot as plt
 # get datas from csv file
 data = pd.read_csv('data.csv', delimiter=';')
 
-# Separate data into 4 groups based on TEXT/BINARY and Buffered (True/False)
-text_false_data = data[(data['Type'] == 'TEXT') & (data['Buffered'] == False)]
-text_true_data = data[(data['Type'] == 'TEXT') & (data['Buffered'] == True)]
-binary_false_data = data[(data['Type'] == 'BINARY') & (data['Buffered'] == False)]
-binary_true_data = data[(data['Type'] == 'BINARY') & (data['Buffered'] == True)]
-# Creat chart with 8 lines
-plt.figure(figsize=(10, 6))
-plt.plot(text_false_data['Size'], text_false_data['WTime'], label="Text (Buffered=False)")
-plt.plot(text_true_data['Size'], text_true_data['WTime'], label="Text (Buffered=True)")
-plt.plot(binary_false_data['Size'], binary_false_data['WTime'], label="Binary (Buffered=False)")
-plt.plot(binary_true_data['Size'], binary_true_data['WTime'], label="Binary (Buffered=True)")
+# Separate data into 4 groups based on Buffered (True/False)
+buffered_data = data[data['Buffered'] == True]
+not_buffered_data = data[data['Buffered'] == False]
 
-plt.plot(text_false_data['Size'], text_false_data['RTime'], label="Text (Buffered=False)")
-plt.plot(text_true_data['Size'], text_true_data['RTime'], label="Text (Buffered=True)")
-plt.plot(binary_false_data['Size'], binary_false_data['RTime'], label="Binary (Buffered=False)")
-plt.plot(binary_true_data['Size'], binary_true_data['RTime'], label="Binary (Buffered=True)")
+# Create 2 separate charts for Buffered and Not Buffered data
+plt.figure(figsize=(12, 6))
 
-# Chart configuration
+# Chart 1: Buffered
+plt.subplot(1, 2, 1)
+plt.plot(buffered_data[buffered_data['Type'] == 'TEXT']['Size'], buffered_data[buffered_data['Type'] == 'TEXT']['WTime'], label="Write Text buffered")
+plt.plot(buffered_data[buffered_data['Type'] == 'BINARY']['Size'], buffered_data[buffered_data['Type'] == 'BINARY']['WTime'], label="Write Binary buffered")
+plt.plot(buffered_data[buffered_data['Type'] == 'TEXT']['Size'], buffered_data[buffered_data['Type'] == 'TEXT']['RTime'], label="Read Text buffered")
+plt.plot(buffered_data[buffered_data['Type'] == 'BINARY']['Size'], buffered_data[buffered_data['Type'] == 'BINARY']['RTime'], label="Read Binary buffered")
+
 plt.xlabel("Size (bytes)")
-plt.ylabel(" Time nanosecondes")
-plt.title("Benchmark Java IO writing / reading")
+plt.ylabel("Time [ms]")
+plt.title("Buffered Data")
 plt.legend()
 plt.grid(True)
 
-# Show chart
-plt.show()
+# Chart 2: Not Buffered
+plt.subplot(1, 2, 2)
+plt.plot(not_buffered_data[not_buffered_data['Type'] == 'TEXT']['Size'], not_buffered_data[not_buffered_data['Type'] == 'TEXT']['WTime'], label="Write Text not buffered")
+plt.plot(not_buffered_data[not_buffered_data['Type'] == 'BINARY']['Size'], not_buffered_data[not_buffered_data['Type'] == 'BINARY']['WTime'], label="Write Binary not buffered")
+plt.plot(not_buffered_data[not_buffered_data['Type'] == 'TEXT']['Size'], not_buffered_data[not_buffered_data['Type'] == 'TEXT']['RTime'], label="Read Text not buffered")
+plt.plot(not_buffered_data[not_buffered_data['Type'] == 'BINARY']['Size'], not_buffered_data[not_buffered_data['Type'] == 'BINARY']['RTime'], label="Read Binary not buffered")
+
+plt.xlabel("Size (bytes)")
+plt.ylabel("Time [ms]")
+plt.title("Not Buffered Data")
+plt.legend()
+plt.grid(True)
+
+# Adjust layout
+plt.tight_layout()
+
+# Save the figure as SVG
+plt.savefig('chart.svg', format='svg', bbox_inches='tight')
+
+# Show the charts
+# plt.show()
