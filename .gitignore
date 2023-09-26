@@ -40,8 +40,5 @@ Thumbs.db
 # Folder config file
 [Dd]esktop.ini
 
-binary_1024B.bin
-
-binary_1B.bin
-
-binary_1MB.bin
+*.bin
+*.txt

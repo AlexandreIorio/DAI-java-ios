@@ -1,0 +1,13 @@
+Name;Type;Buffered;Size;WTime;RTime
+binary_nBuffered_1.bin;BINARY;false;1;849915;334770
+binary_nBuffered_1024.bin;BINARY;false;1024;14817017;1724241
+binary_nBuffered_1048576.bin;BINARY;false;1048576;17398074531;978563382
+binary_Buffered_1.bin;BINARY;true;1;395926;222786
+binary_Buffered_1024.bin;BINARY;true;1024;660550;603569
+binary_Buffered_1048576.bin;BINARY;true;1048576;37823521;63088554
+text_nBuffered_1.txt;TEXT;false;1;695878;1894465
+text_nBuffered_1024.txt;TEXT;false;1024;7169662;3575706
+text_nBuffered_1048576.txt;TEXT;false;1048576;175458117;147697319
+text_Buffered_1.txt;TEXT;true;1;1077967;460215
+text_Buffered_1024.txt;TEXT;true;1024;909549;586739
+text_Buffered_1048576.txt;TEXT;true;1048576;42356001;65213422

@@ -25,8 +25,9 @@ public class Measure {
      * @param buffered Whether to use a buffered stream or not
      * @param type The type of file to write
      * @throws IOException If an error occurs while writing the file
+     * @return Elapsed time
      */
-    public static void write(String filename, int sizeInBytes, boolean buffered, FileType type) throws IOException {
+    public static long write(String filename, int sizeInBytes, boolean buffered, FileType type) throws IOException {
         Writable wr = switch (type) {
             case BINARY -> buffered ? new BufferedBinaryFileWriter() : new BinaryFileWriter();
             case TEXT -> buffered ? new BufferedTextFileWriter() : new TextFileWriter();
@@ -40,6 +41,7 @@ public class Measure {
 
         long end = System.nanoTime();
         System.out.println("Elapsed time: " + (end - start) / 1000000 + "ms / " + (end - start) + "ns");
+        return end - start;
     }
 
     /**
@@ -48,8 +50,9 @@ public class Measure {
      * @param buffered Whether to use a buffered stream or not
      * @param type The type of file to read
      * @throws IOException If an error occurs while reading the file
+     * @return Elapsed time
      */
-    public static void read(String filename, boolean buffered, FileType type) throws IOException {
+    public static long read(String filename, boolean buffered, FileType type) throws IOException {
         Readable rd = switch (type) {
             case BINARY -> buffered ? new BufferedBinaryFileReader() : new BinaryFileReader();
             case TEXT -> buffered ? new BufferedTextFileReader() : new TextFileReader();
@@ -63,5 +66,6 @@ public class Measure {
 
         long end = System.nanoTime();
         System.out.println("Elapsed time: " + (end - start) / 1000000 + "ms / " + (end - start) + "ns");
+        return end - start;
     }
 }
