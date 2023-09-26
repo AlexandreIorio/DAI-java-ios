@@ -72,7 +72,6 @@ Please make sure you have the required dependencies and permissions to run this 
 
 With this project, we have generated the following data, ranging from 1 byte to 2<sup>24</sup> bytes (1 byte to 16 megabyte) with an interval of 2. Here are the results:
 
-Here is the results:
 ![chart](chart.svg)
 ![table](data_table.svg)
 
