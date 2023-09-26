@@ -6,12 +6,24 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        // Measure the time to write a file (e.g : 1 byte, no buffer and binary file)
-
         Measure.write("binary_1B.bin", 1, false, Measure.FileType.BINARY);
+        Measure.write("binary_1024B.bin", 1024, false, Measure.FileType.BINARY);
+        Measure.write("binary_1MB.bin", 1024 * 1024, false, Measure.FileType.BINARY);
 
         // Measure the time to read the same file
 
-        Measure.read("binary_1B.bin", false, Measure.FileType.BINARY);
+        Measure.read("binary_1B.bin", true, Measure.FileType.BINARY);
+        Measure.read("binary_1024B.bin", true, Measure.FileType.BINARY);
+        Measure.read("binary_1MB.bin", true, Measure.FileType.BINARY);
+
+        Measure.write("binary_1B.bin", 1, true, Measure.FileType.BINARY);
+        Measure.write("binary_1024B.bin", 1024, true, Measure.FileType.BINARY);
+        Measure.write("binary_1MB.bin", 1024 * 1024, true, Measure.FileType.BINARY);
+
+        // Measure the time to read the same file
+
+        Measure.read("binary_1B.bin", true, Measure.FileType.BINARY);
+        Measure.read("binary_1024B.bin", true, Measure.FileType.BINARY);
+        Measure.read("binary_1MB.bin", true, Measure.FileType.BINARY);
     }
 }
